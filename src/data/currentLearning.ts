@@ -36,7 +36,7 @@ export const currentLearningData: LearningSection[] = [
     title: 'Upcoming Goals',
     icon: 'track_changes',
     items: [
-      { title: 'Complete STAROS and deploy ManhwaVault together' },
+      { title: 'Complete STAROS and deploy Diskette together' },
       { title: 'Strengthen React and TypeScript through real projects' },
       { title: 'Master Data Structures & Algorithms (DSA)' },
       { title: 'Explore Cybersecurity fundamentals' },

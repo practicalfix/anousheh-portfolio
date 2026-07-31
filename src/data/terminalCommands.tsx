@@ -161,7 +161,7 @@ Meow! 🐾`
               <div className="flex flex-col">
                 <span className="text-primary font-bold border-b border-outline-variant/20 pb-1 mb-1">Building:</span>
                 <span className="text-on-surface before:content-['•_'] before:text-primary">STAROS</span>
-                <span className="text-on-surface before:content-['•_'] before:text-primary">ManhwaVault</span>
+                <span className="text-on-surface before:content-['•_'] before:text-primary">Diskette</span>
               </div>
               
               <div className="flex flex-col">

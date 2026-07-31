@@ -1,6 +1,6 @@
 import smartquizsystemImg from '../assets/projects/smartquizsystem-real.png';
-import manhwavaultImg1 from '../assets/projects/manhwavault-1.png';
-import manhwavaultImg2 from '../assets/projects/manhwavault-2.png';
+import disketteImg1 from '../assets/projects/diskette-1.png';
+import disketteImg2 from '../assets/projects/diskette-2.png';
 import starosImg from '../assets/projects/staros-real.png';
 
 export interface Project {
@@ -31,7 +31,7 @@ export const projectsData: Project[] = [
     status: 'In Progress',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     description: 'A clean and modern personal library for organizing and tracking manga, manhwa, and manhua.',
-    images: [manhwavaultImg1, manhwavaultImg2],
+    images: [disketteImg1, disketteImg2],
     github: null,
     demo: null,
   },

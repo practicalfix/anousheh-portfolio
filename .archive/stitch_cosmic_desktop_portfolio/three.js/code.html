@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_5 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_5" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_5');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const container = document.getElementById('cursor-container') || document.body;
+const cursor = document.createElement('div');
+cursor.id = 'custom-cursor';
+cursor.style.cssText = `
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+// Simple pixel-cat representation using SVG
+const catSvg = `
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect id="body" x="8" y="14" width="16" height="12" fill="white" />
+    <rect id="ear-l" x="8" y="10" width="4" height="4" fill="white" />
+    <rect id="ear-r" x="20" y="10" width="4" height="4" fill="white" />
+    <rect id="eye-l" x="11" y="17" width="2" height="2" fill="#131317" />
+    <rect id="eye-r" x="19" y="17" width="2" height="2" fill="#131317" />
+    <rect id="nose" x="15" y="19" width="2" height="1" fill="#FFB7C5" />
+</svg>
+`;
+
+cursor.innerHTML = catSvg;
+document.body.appendChild(cursor);
+
+let mouseX = 0, mouseY = 0;
+let isHovering = false;
+
+window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX - 16 + 'px';
+    cursor.style.top = mouseY - 16 + 'px';
+});
+
+// Cursor animations based on state
+const updateCursorState = () => {
+    const earL = cursor.querySelector('#ear-l');
+    const earR = cursor.querySelector('#ear-r');
+    const body = cursor.querySelector('#body');
+
+    // Handle hovering
+    const hoveredElement = document.elementFromPoint(mouseX, mouseY);
+    const isClickable = hoveredElement && (hoveredElement.tagName === 'BUTTON' || hoveredElement.closest('.draggable') || hoveredElement.tagName === 'A');
+    
+    if (isClickable && !isHovering) {
+        isHovering = true;
+        earL.setAttribute('y', '8'); // Ears perk up
+        earR.setAttribute('y', '8');
+        cursor.style.transform = 'scale(1.2)';
+    } else if (!isClickable && isHovering) {
+        isHovering = false;
+        earL.setAttribute('y', '10');
+        earR.setAttribute('y', '10');
+        cursor.style.transform = 'scale(1)';
+    }
+
+    requestAnimationFrame(updateCursorState);
+};
+
+// Squish on click
+window.addEventListener('mousedown', () => {
+    cursor.style.transform = isHovering ? 'scale(1.2, 0.8)' : 'scale(1, 0.8)';
+});
+
+window.addEventListener('mouseup', () => {
+    cursor.style.transform = isHovering ? 'scale(1.2)' : 'scale(1)';
+});
+
+updateCursorState();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_5 -->
+</body>
+</html>
